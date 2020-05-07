@@ -4,14 +4,10 @@ import (
 	"net/http"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"stack-bingo/core"
-	"fmt"
 )
 
 
 func main() {
-	var a entity.Dumb
-	fmt.Printf("%+v\n", a)
 
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
