@@ -1,4 +1,4 @@
-package entity
+package core
 
 type Dumb struct {
 	Name string
