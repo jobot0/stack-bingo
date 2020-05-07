@@ -4,11 +4,13 @@ import (
 	"net/http"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
+	"stack-bingo/data"
 )
 
 
 func main() {
-
+	data.DB_Model()
+	
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
