@@ -4,13 +4,23 @@ import (
 	"net/http"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"stack-bingo/data"
+	//"github.com/go-pg/pg/v9"
+	//"stack-bingo/core"
+	//_dbDumbRepository "stack-bingo/data"
 )
 
 
 func main() {
-	data.DB_Model()
-	
+	//db := pg.Connect(&pg.Options{
+	//	Database: "stack-bingo",
+	//	User: "postgres",
+	//	Password: "Pass2020!",
+	//})
+
+	//dumbRepo := _dbDumbRepository.NewDbDumbRepository(db)
+	//dumbu := core.NewCreateDumbUsecase(dumbRepo)
+	//d := core.Dumb{Name: "oulala"}
+	//dumbu.Execute(&d)
 	// Set the router as the default one shipped with Gin
 	router := gin.Default()
 
@@ -22,11 +32,13 @@ func main() {
 	{
 		api.GET("/", func(c *gin.Context){
 			c.JSON(http.StatusOK, gin.H{
+				fmt.Printf("%s", d.Name);
 				"message": "pong",
 			})
 		})
 	}
 
+	//defer db.Close()
 	// Start and run the server
 	router.Run(":5000")
 }
