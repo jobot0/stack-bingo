@@ -1,37 +1,33 @@
 package data
 
 import (
-	"fmt"
 	"github.com/go-pg/pg/v9"
+	"stack-bingo/core"
 )
 
 type Dumbs struct {
 	tableName struct{} `pg:"dumbs"`
-	Id	int64 
 	Name	string
 }
 
-func (d Dumbs) String() string {
-	return fmt.Sprintf("Dumb<%d %s>", d.Id, d.Name)
+type dbDumbRepository struct {
+	DbConn *pg.DB
 }
 
-func DB_Model() {
-	db := pg.Connect(&pg.Options{
-		Database: "stack-bingo",
-		User: "postgres",
-		Password: "Pass2020!",
-	})
-	defer db.Close()
-
-	dumb := Dumbs{
-		Id: 1,
-		Name: "toto",
+func NewDbDumbRepository(db *pg.DB) core.DumbRepository {
+	return &dbDumbRepository{
+		DbConn: db,
 	}
-	err := db.Select(&dumb)
+}
+
+func (ddr *dbDumbRepository) Save(dumb *core.Dumb) (err error) {
+	d := Dumbs {
+		Name: dumb.Name,
+	}
+
+	err = ddr.DbConn.Insert(&d)
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println(dumb)
+	return 
 }
-

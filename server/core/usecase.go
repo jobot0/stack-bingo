@@ -1,7 +1,5 @@
 package core
 
-import "fmt"
-
 type createDumbUsecase struct {
 	dumbRepository DumbRepository 
 }
@@ -17,6 +15,6 @@ func NewCreateDumbUsecase(d DumbRepository) CreateDumbUsecase{
 }
 
 func (c *createDumbUsecase) Execute(dumb *Dumb) (err error) {
-	fmt.Printf("%+v\n", dumb)	
+	err = c.dumbRepository.Save(dumb)
 	return 
 }
