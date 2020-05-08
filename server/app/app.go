@@ -32,7 +32,6 @@ func main() {
 	{
 		api.GET("/", func(c *gin.Context){
 			c.JSON(http.StatusOK, gin.H{
-				fmt.Printf("%s", d.Name);
 				"message": "pong",
 			})
 		})
